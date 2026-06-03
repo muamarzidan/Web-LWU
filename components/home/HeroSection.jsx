@@ -46,87 +46,96 @@ const imageSocialProof = [
 
 function HeroIllustration({ shouldAnimate }) {
   return (
-    <div className="relative flex items-center justify-center">
-      {/* Main card */}
+    <div className="relative flex items-center justify-center w-full h-full">
+      {/* Background Circle */}
       <motion.div
-        className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[420px] rounded-3xl overflow-hidden shadow-2xl"
-        style={{
-          background: "linear-gradient(135deg, #2563EB 0%, #1B2D5E 100%)",
-        }}
+        className="relative flex items-center justify-center"
         animate={shouldAnimate ? { y: [0, -8, 0] } : {}}
-        transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+          ease: "easeInOut",
+        }}
       >
-        {/* SVG Illustration */}
-        <svg
-          viewBox="0 0 300 350"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute inset-0 w-full h-full opacity-90"
-          aria-hidden="true"
-        >
-          {/* Background shapes */}
-          <circle cx="150" cy="175" r="120" fill="white" fillOpacity="0.05" />
-          <circle cx="150" cy="175" r="80" fill="white" fillOpacity="0.05" />
-          {/* Book */}
-          <rect x="80" y="130" width="140" height="110" rx="8" fill="white" fillOpacity="0.15" />
-          <rect x="90" y="140" width="60" height="90" rx="4" fill="#F59E0B" fillOpacity="0.8" />
-          <rect x="155" y="140" width="60" height="90" rx="4" fill="white" fillOpacity="0.3" />
-          {/* Lines on pages */}
-          <rect x="98" y="155" width="44" height="3" rx="1.5" fill="white" fillOpacity="0.6" />
-          <rect x="98" y="163" width="38" height="3" rx="1.5" fill="white" fillOpacity="0.6" />
-          <rect x="98" y="171" width="44" height="3" rx="1.5" fill="white" fillOpacity="0.6" />
-          <rect x="163" y="155" width="40" height="3" rx="1.5" fill="white" fillOpacity="0.4" />
-          <rect x="163" y="163" width="34" height="3" rx="1.5" fill="white" fillOpacity="0.4" />
-          <rect x="163" y="171" width="40" height="3" rx="1.5" fill="white" fillOpacity="0.4" />
-          {/* Graduation cap */}
-          <ellipse cx="150" cy="95" rx="45" ry="12" fill="white" fillOpacity="0.25" />
-          <rect x="115" y="83" width="70" height="12" rx="2" fill="white" fillOpacity="0.3" />
-          <rect x="140" y="71" width="20" height="28" rx="2" fill="white" fillOpacity="0.2" />
-          <circle cx="183" cy="107" r="4" fill="#F59E0B" />
-          <path d="M183 107 L183 125" stroke="#F59E0B" strokeWidth="2" />
-          <circle cx="183" cy="128" r="5" fill="#F59E0B" />
-          {/* Stars */}
-          <text x="105" y="75" fontSize="18" fill="#F59E0B" opacity="0.8">⭐</text>
-          <text x="195" y="200" fontSize="14" fill="white" opacity="0.5">✦</text>
-          <text x="75" y="230" fontSize="12" fill="white" opacity="0.4">✦</text>
-          {/* LWU text */}
-          <text x="150" y="275" fontSize="28" fontWeight="800" fill="white" fillOpacity="0.15" textAnchor="middle" fontFamily="serif">LWU</text>
-        </svg>
-        {/* Gradient overlay */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#1B2D5E]/60 to-transparent" />
+        {/* Outer Circle */}
+        <div className="absolute w-[500px] h-[500px] rounded-full bg-[#FDE68A]/25" />
+        {/* Middle Circle */}
+        <div className="absolute w-[400px] h-[400px] rounded-full bg-[#FBBF24]/20" />
+        {/* Main Circle */}
+        <div className="absolute w-[320px] h-[320px] rounded-full bg-[#FBBF24]" />
+        {/* Student Image */}
+        <Image
+          src="/hero-1.png"
+          alt="Learning With Us Student"
+          width={420}
+          height={500}
+          priority
+          className="relative z-10 object-contain"
+        />
       </motion.div>
-      {/* Floating badge: IELTS Score */}
+      {/* Rating Badge */}
       <motion.div
-        className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3"
-        animate={shouldAnimate ? { y: [0, -6, 0] } : {}}
-        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0.5 }}
-      >
-        <div className="text-2xl">🏆</div>
-        <div>
-          <div className="text-xs font-bold text-[#1B2D5E] leading-none">IELTS Score</div>
-          <div className="text-lg font-extrabold text-[#F59E0B] leading-none">8.0</div>
-        </div>
-      </motion.div>
-      {/* Floating badge: Online & Offline */}
-      <motion.div
-        className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2"
-        animate={shouldAnimate ? { y: [0, -6, 0] } : {}}
-        transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}
-      >
-        <span className="text-lg">✅</span>
-        <div>
-          <div className="text-xs font-bold text-[#1B2D5E] leading-tight">Online &</div>
-          <div className="text-xs font-bold text-[#1B2D5E] leading-tight">Offline</div>
-        </div>
-      </motion.div>
-      {/* Floating badge: Students */}
-      <motion.div
-        className="absolute top-1/2 -left-10 bg-[#1B2D5E] rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2"
+        className="absolute top-12 left-0 bg-white rounded-2xl shadow-xl px-5 py-4 z-20"
         animate={shouldAnimate ? { y: [0, -5, 0] } : {}}
-        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1.5 }}
+        transition={{
+          repeat: Infinity,
+          duration: 3,
+          delay: 0.5,
+        }}
       >
-        <span className="text-sm">🎓</span>
-        <div className="text-xs font-bold text-white leading-tight">1000+<br/>Siswa</div>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+            ⭐
+          </div>
+
+          <div>
+            <div className="font-bold text-[#1B2D5E]">
+              98.9%
+            </div>
+
+            <div className="text-xs text-gray-500">
+              Student Satisfaction
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* IELTS Badge */}
+      <motion.div
+        className="absolute bottom-8 right-0 bg-white rounded-2xl shadow-xl px-4 py-3 z-20"
+        animate={shouldAnimate ? { y: [0, -6, 0] } : {}}
+        transition={{
+          repeat: Infinity,
+          duration: 3.5,
+          delay: 1,
+        }}
+      >
+        <div className="text-lg font-bold text-[#2563EB]">
+          IELTS 8.0+
+        </div>
+
+        <div className="text-xs text-gray-500">
+          Top Achievers
+        </div>
+      </motion.div>
+
+      {/* Student Count */}
+      <motion.div
+        className="absolute bottom-24 -left-4 bg-[#1B2D5E] text-white rounded-2xl shadow-xl px-4 py-3 z-20"
+        animate={shouldAnimate ? { y: [0, -5, 0] } : {}}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+          delay: 1.5,
+        }}
+      >
+        <div className="font-bold text-lg">
+          1.000+
+        </div>
+
+        <div className="text-xs">
+          Active Students
+        </div>
       </motion.div>
     </div>
   );
@@ -156,7 +165,6 @@ export default function HeroSection() {
         }}
         aria-hidden="true"
       />
-
       {/* Main Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
         <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">

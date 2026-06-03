@@ -40,24 +40,21 @@ export default function ProgramCard({
     : WHATSAPP_LINK;
 
   return (
-    <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-[#F3F4F6] hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col">
+    <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-[#F3F4F6] hover:-translate-y-1 transition-all duration-300 flex flex-col">
       {/* Top colored banner */}
       <div className={`h-1.5 ${isPopular ? "bg-[#F59E0B]" : c.banner}`} aria-hidden="true" />
-
       {/* Popular badge */}
       {isPopular && (
         <div className="absolute top-4 right-4 bg-[#F59E0B] text-white text-xs font-bold rounded-full px-3 py-1">
           PALING POPULER
         </div>
       )}
-
       <div className="p-8 flex flex-col flex-1">
         {/* Header */}
         <div className="mb-5">
           <h3 className="text-xl font-bold text-[#1B2D5E] mb-1">{title}</h3>
           <p className="text-sm text-[#6B7280]">{subtitle}</p>
         </div>
-
         {/* Meta info */}
         <div className="flex flex-wrap gap-3 mb-6">
           {level && (
@@ -79,7 +76,6 @@ export default function ProgramCard({
             </span>
           )}
         </div>
-
         {/* Features */}
         <ul className="flex flex-col gap-2.5 mb-7 flex-1" role="list">
           {features.map((f) => (
@@ -92,7 +88,6 @@ export default function ProgramCard({
             </li>
           ))}
         </ul>
-
         {/* CTA */}
         <a
           href={waLink}

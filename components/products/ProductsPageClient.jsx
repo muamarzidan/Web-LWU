@@ -227,8 +227,8 @@ export default function ProductsPageClient() {
       {showKursus && (
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-3xl shadow-sm border border-[#F3F4F6] overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-1.5 bg-[#1B2D5E]" aria-hidden="true" />
+            <div className="bg-white rounded-3xl border border-gray-300 overflow-hidden">
+              {/* <div className="h-1.5 bg-[#1B2D5E]" aria-hidden="true" /> */}
               <div className="grid lg:grid-cols-2 gap-0">
                 {/* Left: Program details */}
                 <div className="p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[#F3F4F6]">
@@ -261,7 +261,7 @@ export default function ProductsPageClient() {
                     href={`${WHATSAPP_LINK}?text=${encodeURIComponent("Halo LWU! Saya tertarik dengan program Business English.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-3.5 bg-[#2563EB] text-white rounded-full text-sm font-semibold hover:bg-[#2563EB] active:scale-95 transition-all duration-200"
+                    className="inline-flex items-center justify-center px-8 py-3.5 bg-[#2563EB] hover:bg-[#1f52c2] text-white rounded-full text-sm font-semibold active:scale-95 transition-all duration-200"
                   >
                     Daftar Program Ini
                   </a>
@@ -359,7 +359,7 @@ export default function ProductsPageClient() {
               ].map((course) => (
                 <div
                   key={course.id}
-                  className="bg-white rounded-2xl p-7 shadow-sm border border-[#F3F4F6] hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                  className="bg-white rounded-2xl p-7 shadow-sm border border-[#F3F4F6] transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="flex items-start gap-5">
                     <div className="flex-1">
