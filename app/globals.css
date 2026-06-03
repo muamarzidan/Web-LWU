@@ -1,26 +1,199 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@source inline("{
+  bg-[#2563EB]/10 text-[#2563EB]
+  bg-green-50 text-green-600
+  bg-[#F59E0B]/10 text-[#F59E0B]
+  bg-pink-50 text-pink-600
+  border-neutral-100 border-[#2563EB]
+  bg-[#1B2D5E]/10 text-[#1B2D5E]
+  bg-[#2563EB] bg-[#F59E0B] bg-[#1B2D5E]
+  text-[#2563EB] text-[#F59E0B] text-[#1B2D5E]
+  shadow-md shadow-amber-200 shadow-blue-100
+  hover:bg-amber-500 hover:bg-blue-700
+  bg-white/95 bg-white/90 bg-transparent
+  bg-[#F3F4F6] hover:bg-[#E5E7EB]
+  translate-x-0 translate-x-full
+  text-blue-200 text-blue-100
+}");
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand Colors */
+  --color-brand-navy: #1B2D5E;
+  --color-brand-blue: #2563EB;
+  --color-brand-sky: #60A5FA;
+  --color-brand-gold: #F59E0B;
+  --color-brand-cream: #F8F6F0;
+  --color-brand-white: #FFFFFF;
+
+  /* Neutral Colors */
+  --color-neutral-900: #111827;
+  --color-neutral-700: #374151;
+  --color-neutral-500: #6B7280;
+  --color-neutral-300: #D1D5DB;
+  --color-neutral-100: #F3F4F6;
+
+  /* Fonts — wired to Next.js injected CSS variables */
+  --font-display: var(--font-libre, "Libre Baskerville", serif);
+  --font-sans: var(--font-plus-jakarta, "Plus Jakarta Sans", system-ui, sans-serif);
+
+  /* Custom Animations */
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-float-delay: float 3s ease-in-out 1.5s infinite;
+  --animate-pulse-ring: pulse-ring 2s ease-out infinite;
+  --animate-fade-up: fadeUp 0.5s ease-out forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: #FFFFFF;
+    color: #111827;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: #1B2D5E;
+    color: white;
+    padding: 8px 16px;
+    z-index: 9999;
+    font-size: 14px;
+    font-weight: 600;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
+  .nav-link-animated {
+    position: relative;
+  }
+  .nav-link-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2563EB;
+    transition: width 0.3s ease;
+  }
+  .nav-link-animated:hover::after,
+  .nav-link-animated[aria-current="page"]::after {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+
+
+
+
+.cta-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.floating-icons {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-icon {
+  position: absolute;
+  bottom: -150px;
+
+  color: white;
+
+  stroke-width: 1.5;
+
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  will-change: transform, opacity;
+}
+
+@keyframes floatUp {
+  0% {
+    transform:
+      translateY(0)
+      rotate(var(--rotation))
+      scale(0.8);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: inherit;
+  }
+
+  50% {
+    transform:
+      translateY(-70vh)
+      rotate(calc(var(--rotation) + 180deg))
+      scale(1);
+  }
+
+  100% {
+    transform:
+      translateY(-160vh)
+      rotate(calc(var(--rotation) + 360deg))
+      scale(1.2);
+
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-icon {
+    transform-origin: center;
+  }
 }
